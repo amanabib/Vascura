@@ -1,0 +1,10 @@
+# Dependencies for Vascura — a single Flask web app (app.py serving web/).
+
+# Anthropic Python SDK — powers the AI advice layer. The app runs fine without a
+# key (it falls back to static, source-backed advice); the key enables live Claude
+# advice.
+anthropic>=0.69,<1.0
+
+# Flask + a production WSGI server (used by Render and any other host).
+Flask>=3.1,<4
+gunicorn>=23,<27

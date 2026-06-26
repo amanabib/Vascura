@@ -1,0 +1,18 @@
+# Render deployment blueprint (https://render.com).
+# Push this repo to GitHub, then in Render: New > Blueprint, point it at the repo.
+# Render reads this file and creates the service automatically.
+services:
+  - type: web
+    name: cvd-risk-app
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      # Set the real value in the Render dashboard (Environment tab), NOT here.
+      # sync:false keeps the secret out of this file / your git history.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Optional: pick a specific model. Verify names at https://docs.claude.com
+      # - key: ADVICE_MODEL
+      #   value: claude-sonnet-4-6
